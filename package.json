@@ -1,0 +1,16 @@
+{
+  "name": "login-electron",
+  "product-name": "Login/Signup",
+  "version": "1.0.0",
+  "description": "Login and signup page",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Mehul Kumar",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^31.1.0",
+    "toastify-js": "^1.12.0"
+  }
+}
