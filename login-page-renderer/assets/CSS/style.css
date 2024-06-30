@@ -11,9 +11,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: -20px 0 50px;
-		margin-top: 20px;
+    height: 96vh;
 }
 
 h1 {
@@ -42,8 +40,8 @@ a {
 
 .container {
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    border-radius: 18px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .3), 0 10px 10px rgba(0, 0, 0, .3);
     position: relative;
     overflow: hidden;
     width: 768px;

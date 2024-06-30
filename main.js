@@ -1,7 +1,7 @@
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, ipcRenderer } = require('electron');
 const { error } = require('console');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -12,7 +12,8 @@ function createMainWindow() {
   mainWindow = new BrowserWindow({
     title: "Login",
     width: 900,
-    height: 700,
+    height: 600,
+    icon: `${__dirname}/assets/icons/Icon_256x256.png`,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
@@ -35,9 +36,10 @@ app.on('ready', () => {
   // There should be something for footer just like menu
   // Remove variable from memory
   mainWindow.on('closed', () => (mainWindow = null));
+  //Menu.setApplicationMenu(null);
 });
 
-ipcMain.on('sign-in-attempted', () => {
+ipcMain.on('sign-in-attempted', (e, loginCredentials) => {
   try {
     mainWindow.loadFile(path.join(__dirname, './activity-renderer/index.html'));
     ipcRenderer.send('sign-in-successful');
