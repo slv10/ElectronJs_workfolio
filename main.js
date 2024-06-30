@@ -7,13 +7,15 @@ const { error } = require('console');
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
 
+let mainWindow;
 // Main Window
 function createMainWindow() {
   mainWindow = new BrowserWindow({
-    title: "Login",
-    width: 900,
-    height: 600,
-    icon: `${__dirname}/assets/icons/Icon_256x256.png`,
+    title: "WorkFolio",
+    width: 820,
+    height: 550,
+    resizable: false,
+    icon: `${__dirname}/login-page-renderer/assets/icons/Icon_256x256.png`,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
@@ -41,8 +43,9 @@ app.on('ready', () => {
 
 ipcMain.on('sign-in-attempted', (e, loginCredentials) => {
   try {
-    mainWindow.loadFile(path.join(__dirname, './activity-renderer/index.html'));
-    ipcRenderer.send('sign-in-successful');
+    mainWindow.loadFile(path.join(__dirname, './activity-renderer/index.html')).then(() => {
+      mainWindow.webContents.send('sign-in-successful');
+    });
   }
   catch (err) {
     console.log(err);

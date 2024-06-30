@@ -25,7 +25,7 @@ function handleSignIn() {
     console.log('signin clicked');
 
     if (Email.value === '' || Pass.value === '') {
-        //alertError('Please enter Email and Password');
+        alertError('Please enter Email and Password');
         return;
     }
 
