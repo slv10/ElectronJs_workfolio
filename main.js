@@ -38,10 +38,12 @@ app.on('ready', () => {
   // There should be something for footer just like menu
   // Remove variable from memory
   mainWindow.on('closed', () => (mainWindow = null));
+  //uncomment the below line to hide default menu options
   //Menu.setApplicationMenu(null);
 });
 
 ipcMain.on('sign-in-attempted', (e, loginCredentials) => {
+  e.preventDefault();
   try {
     mainWindow.loadFile(path.join(__dirname, './activity-renderer/index.html')).then(() => {
       mainWindow.webContents.send('sign-in-successful');

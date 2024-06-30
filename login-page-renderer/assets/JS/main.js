@@ -5,6 +5,8 @@ const signInAttempted = document.getElementById('sign_In');
 const Email = document.querySelector('#registered-email');
 const Pass = document.querySelector('#registered-pass');
 
+let currentToast = null;
+
 signUpButton.addEventListener('click', () =>
     container.classList.add('right-panel-active'));
 
@@ -49,14 +51,31 @@ function alertSuccess(message) {
 }
 
 function alertError(message) {
-    Toastify.toast({
+
+    if (currentToast && currentToast.isActive()) {
+        return;
+    }
+    currentToast = Toastify.toast({
         text: message,
         duration: 4000,
         close: false,
+        gravity: 'top',
+        position: 'right',
+        offset: {
+            x: '190px',
+            y: '83px',
+        },
         style: {
             background: 'red',
             color: 'white',
             textAlign: 'center',
+            zIndex: 1000,
         },
+
+        callback: {
+            onHidden: function () {
+                currentToast = null;
+            }
+        }
     });
 }
